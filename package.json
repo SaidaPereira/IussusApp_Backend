@@ -1,0 +1,23 @@
+{
+  "name": "com.lenguaje.iussusapp",
+  "version": "1.0.0",
+  "description": "Aplicativo para registro de pedidos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Pedidos",
+    "historial",
+    "de",
+    "pedidos",
+    "seguimiento",
+    "de",
+    "pedidos"
+  ],
+  "author": "Saida Pereira",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
