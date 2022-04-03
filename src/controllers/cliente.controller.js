@@ -1,4 +1,4 @@
-const clienteService = require("../services/clientes/cliente.service");
+const clienteService = require("../services/cliente.service");
 
 const list = async (req, res) => {
   const clientes = await clienteService.list(req.query.q);
