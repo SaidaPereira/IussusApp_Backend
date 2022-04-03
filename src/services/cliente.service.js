@@ -1,6 +1,6 @@
 
-const { ClienteModel } = require("../../models/cliente.model");
-const { sequelize } = require("../bd.service");
+const { ClienteModel } = require("../models/cliente.model");
+const { sequelize } = require("./bd.service");
 const { QueryTypes } = require("sequelize");
 
 // Consulta en la base de datos
