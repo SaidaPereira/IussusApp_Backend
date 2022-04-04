@@ -10,6 +10,7 @@ app.use(bodyparser.json());
 app.use(cors());
 
 require("./src/routes/cliente.routes")(app);
+require("./src/routes/estado.routes")(app);
 
 
 
