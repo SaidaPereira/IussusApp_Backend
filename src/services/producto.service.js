@@ -5,7 +5,11 @@ const { QueryTypes } = require("sequelize");
 
 // Consulta en la base de datos
 const list = async (query, pageStart = 1, pageLimit = 10) => {
-  const ProductoModelResults = await ProductoModel.findAll();
+  const ProductoModelResults = await ProductoModel.findAll(
+    {
+      order:['pro_codigo'],
+    }
+  );
 
   const ProductoArray = new Array();
   for (let i = 0; i < ProductoModelResults.length; i++) {

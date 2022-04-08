@@ -5,7 +5,11 @@ const { QueryTypes } = require("sequelize");
 
 // Consulta en la base de datos
 const list = async (query, pageStart = 1, pageLimit = 10) => {
-  const estadoModelResults = await EstadoModel.findAll();
+  const estadoModelResults = await EstadoModel.findAll(
+    {
+      order:['est_codigo'],
+    }
+  );
 
   const estadosArray = new Array();
   for (let i = 0; i < estadoModelResults.length; i++) {

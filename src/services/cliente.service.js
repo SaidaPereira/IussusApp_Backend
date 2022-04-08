@@ -5,7 +5,11 @@ const { QueryTypes } = require("sequelize");
 
 // Consulta en la base de datos
 const list = async (query, pageStart = 1, pageLimit = 10) => {
-  const clienteModelResults = await ClienteModel.findAll();
+  const clienteModelResults = await ClienteModel.findAll(
+    {
+      order:['cli_codigo'],
+    }
+  );
 
   const clientesArray = new Array();
   for (let i = 0; i < clienteModelResults.length; i++) {
