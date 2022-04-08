@@ -11,6 +11,7 @@ app.use(cors());
 
 require("./src/routes/cliente.routes")(app);
 require("./src/routes/estado.routes")(app);
+require("./src/routes/producto.routes")(app);
 
 
 
