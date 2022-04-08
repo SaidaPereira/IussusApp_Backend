@@ -18,7 +18,7 @@ const ClienteModel = sequelize.define(
 
     cli_apellido: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
     cli_ruci: {
@@ -31,7 +31,7 @@ const ClienteModel = sequelize.define(
     },
     cli_telefono: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     cli_correo: {
       type: DataTypes.STRING,
