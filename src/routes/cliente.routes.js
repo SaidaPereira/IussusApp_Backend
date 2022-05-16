@@ -1,5 +1,6 @@
 const clienteController = require("../controllers/cliente.controller");
 
+
 module.exports = (app) => {
   app.get("/clientes", clienteController.list);
 
