@@ -13,6 +13,7 @@ require("./src/routes/cliente.routes")(app);
 require("./src/routes/estado.routes")(app);
 require("./src/routes/producto.routes")(app);
 require("./src/routes/agenda.routes")(app);
+require("./src/routes/usuario.routes")(app);
 
 
 
