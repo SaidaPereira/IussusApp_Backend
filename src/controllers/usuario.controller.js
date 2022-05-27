@@ -27,17 +27,16 @@ const update = async (req, res) => {
   res.status(202).send({ success: true, usuario });
 };
 
-const remove = async (req, res) => {
-  const booleanValue = await usuarioService.remove(req.params.id);
-  res.status(202).send({ success: booleanValue });
-};
+
 
 const login = async (req, res) => {
 
 try {
   const usuario = await usuarioService.login (req.body);
   res.status(202).send({ success: true,
-    token :  usuario.token});
+    token :  usuario.token,
+    codigo:  usuario.codigo,
+});
 } catch (error) {
   res.status(202).send(
     { success: false,
@@ -62,7 +61,6 @@ module.exports = {
   getById,
   create,
   update,
-  remove,
   login,
   logout
 };

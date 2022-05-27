@@ -23,6 +23,10 @@ const UsuarioModel = sequelize.define('Usuario', {
   },
   usu_img: {
     type: DataTypes.STRING,
+    allowNull: true,
+  },
+  usu_telefono: {
+    type: DataTypes.STRING,
     allowNull: false,
   }
 }, {

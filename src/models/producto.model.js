@@ -26,7 +26,7 @@ const ProductoModel = sequelize.define(
       allowNull: true,
     },
     pro_unimed: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     

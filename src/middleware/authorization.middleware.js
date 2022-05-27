@@ -5,7 +5,7 @@ const authorization = async (request, response, next) => {
    const token = request.headers['authorization'];
 
    let usuariosResult = await sequelize.query(
-    `SELECT usu_codigo, usu_name, usu_token FROM usuario WHERE usu_token = :t`,
+    `SELECT usu_codigo, usu_email, usu_name, usu_token FROM usuario WHERE usu_token = :t`,
     {
       replacements: {
         t: token

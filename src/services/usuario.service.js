@@ -1,9 +1,6 @@
 const { UsuarioModel } = require("../models/usuario.model");
 const { sequelize } = require("./bd.service");
-const { QueryTypes } = require("sequelize");
 const jwt = require("jsonwebtoken");
-const { password } = require("pg/lib/defaults");
-const { request } = require("express");
 
 // Consulta en la base de datos
 const list = async (query, pageStart = 1, pageLimit = 10) => {
@@ -48,11 +45,11 @@ const create = async (data) => {
 const login = async (data) => {
   // BUscar al usuario por el username y password
   let usuariosResult = await sequelize.query(
-    `SELECT usu_codigo, usu_name, usu_token FROM usuario WHERE usu_name = :n
+    `SELECT usu_codigo, usu_name,usu_email, usu_token FROM usuario WHERE usu_email = :n
                           AND usu_password = :p LIMIT 1 `,
     {
       replacements: {
-        n: data.usu_name,
+        n: data.usu_email,
         p: data.usu_password,
       },
       //type:QueryTypes.SELECT
@@ -66,10 +63,11 @@ const login = async (data) => {
     if (usuariosResult[0].usu_token && usuariosResult[0].usu_token != " ") {
       return {
         token: usuariosResult[0].usu_token,
+        codigo : usuariosResult[0].usu_codigo,
       };
     } else {
       const payload = {
-        usu_name: data.usu_name,
+        usu_email: data.usu_email,
         usu_codigo: usuariosResult[0].usu_codigo,
       };
 
@@ -85,11 +83,13 @@ const login = async (data) => {
           },
           //type:QueryTypes.SELECT
         }
-      );
 
+        
+      );
+      const codigo = usuariosResult[0].usu_codigo;
       return {
-        token,
-      };
+        token, codigo
+             };
     }
   } else {
     throw new Error("Datos de usuario o password incorrectos");
@@ -133,26 +133,15 @@ const update = async (data) => {
 
 //Eliminar datos en la base de datos
 
-const remove = async (usu_codigo) => {
-  const usuarioModelCount = await UsuarioModel.destroy({
-    where: {
-      usu_codigo: usu_codigo,
-    },
-  });
 
-  if (usuarioModelCount > 0) {
-    return true;
-  } else {
-    return false;
-  }
-};
+
+
 
 module.exports = {
   list,
   getById,
   create,
   update,
-  remove,
   login,
   logout,
 };

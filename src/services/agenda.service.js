@@ -4,21 +4,21 @@ const { sequelize } = require("./bd.service");
 const { QueryTypes } = require("sequelize");
 
 // Consulta en la base de datos
-const list = async (query, pageStart = 1, pageLimit = 10) => {
-  const agendaModelResults = await AgendaModel.findAll(
-    {
-      order:['age_codigo'],
+const list = async () => {
+
+  let sql = `select a.*,concat(c.cli_nombre,' ',c.cli_apellido) as nombre   
+              from agenda as a 
+              inner join cliente as c
+              on c.cli_codigo = age_codcli`;
+
+  const agendaModelResults = await sequelize.query(sql);
+   
+    if (agendaModelResults) {
+      return agendaModelResults[0]
+    } else {
+      return null;
     }
-  );
-
-  const agendasArray = new Array();
-  for (let i = 0; i < agendaModelResults.length; i++) {
-    const agendasResult = agendaModelResults[i];
-    agendasArray.push(agendasResult.dataValues);
-  }
-
-  return agendasArray;
-};
+  };
 
 
 // Buscar en la base de datos por codigo
